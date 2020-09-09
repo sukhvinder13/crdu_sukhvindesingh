@@ -1,0 +1,73 @@
+<!-- main app container -->
+<h4>Subject Marks</h4>
+<div class="row">
+  <div class="col-md-6">
+      <h4>Add Marks</h4>
+  </div>
+  <div class="col-md-6">
+      <!-- <button type="button" class="btn btn-danger float-right " [routerLink]="['/viewMarks']">
+          ViewMarks </button> -->
+  </div>
+</div>
+<hr>
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label>Student Name</label>
+                        <input type="text" formControlName="studentName" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.studentName.errors }" 
+                           />
+                        <div *ngIf="submitted && f.studentName.errors" class="invalid-feedback">
+                            <div *ngIf="f.studentName.errors.required">Student Name is required</div>
+                        </div>
+                    </div>
+                                       <hr>
+                    <div formArrayName="subjects">
+                        <div *ngFor="let subjects of editForm.get('subjects')['controls']; let i=index">
+                            <div>
+                                <span>Subject  {{i + 1}}</span>
+                                <!-- <span *ngIf="editForm.get('subjects').length > 1" (click)="removeResponseYes(i)">Remove
+                                </span> -->
+                            </div>
+                            <div [formGroupName]="i">
+                                <!--yes-->
+                                <div>
+                                    <label>Subject Name</label>
+                                    <input type="text" formControlName="subjectName" class="form-control">
+                                    <!--display error message if yes is not valid-->
+                                    <!-- <small [hidden]="editForm.controls.subjects.controls[i].controls.subjectName.valid">
+                                      subjectName is required
+                                    </small> -->
+                                </div>
+                                <div>
+                                  <label>Subject Marks</label>
+                                  <input type="text" formControlName="subjectMarks" class="form-control">
+                                  <!--display error message if yes is not valid-->
+                                  <!-- <small [hidden]="editForm.controls.subjects.controls[i].controls.subjectMarks.valid">
+                                    subjectName is required
+                                  </small> -->
+                              </div>
+                              
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="margin-20">
+                        <a (click)="addResponseYes()" style="cursor: default">
+                            Add New Subject +
+                        </a>
+                    </div> 
+                  
+                      <hr>
+                     
+                    <div class="form-group" >
+                        <button class="btn btn-primary">Add Marks</button>
+                     </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

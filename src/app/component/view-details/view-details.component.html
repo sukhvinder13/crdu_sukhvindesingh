@@ -1,1 +1,47 @@
-<p>view-details works!</p>
+<div class="row">
+    <!-- <div class="col-md-6">
+      <button type="button" class="btn btn-danger float-right " [routerLink]="['/view-details']">
+        view Marks </button>
+    </div> -->
+    <div class="col-md-6">
+      <button type="button" class="btn btn-danger float-right " >
+        Add Marks </button>
+    </div>
+  </div>
+  <hr>
+  <div class="container">
+      <!-- No data message -->
+      <!-- <p *ngIf="lessonData.length <= 0" class="no-data text-center">There is no lessonData added yet!</p> -->
+    
+      <!-- lessonData list -->
+      <table class="table table-bordered" >
+        <thead class="table-success">
+          <tr>
+            <th scope="col">#</th>
+            <!-- <th scope="col">id</th> -->
+            <th scope="col">Student Name</th>
+            <th scope="col">Subject</th>
+            
+            <!-- <th scope="col center">Edit/Delete</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of lessonData.posts;let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{data.studentName}}</td>
+            <td ><div *ngFor="let responseYes of lessonData.posts[i].responseYes;let j = index ">
+            <span>Yes:-{{responseYes.yes}}</span>
+          </div> 
+            </td>
+            <!-- <td class="text-center edit-block">
+              <span class="edit" [routerLink]="['/edit-lesson/', data._id]">
+                <button type="button" class="btn btn-success btn-sm">Edit</button>
+              </span>
+              <span class="delete" (click)="removelessonData(data,i)">
+                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+              </span>
+            </td> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
